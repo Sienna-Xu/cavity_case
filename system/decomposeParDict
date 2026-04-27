@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     |                                                 |
+|   \\  /    A nd           |                                                 |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      decomposeParDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+numberOfSubdomains 8; // 设定使用的 CPU 核心数
+
+// 实验切换：在此处切换不同的划分方法
+method          scotch; 
+// method          simple;
+
+simpleCoeffs
+{
+    // 如果使用 simple，需保证 n 的乘积等于 numberOfSubdomains (2*2*2=8)
+    n               (2 2 2); 
+    delta           0.001;
+}
+
+scotchCoeffs
+{
+    // scotch 自动图划分，无需额外参数
+}
