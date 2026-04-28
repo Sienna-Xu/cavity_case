@@ -18,10 +18,16 @@ application     icoFoam;
 startFrom       startTime;
 startTime       0;
 stopAt          endTime;
-endTime         0.05;      // 运行时间极短，纯作性能 Benchmark
-deltaT          0.001;     // 50个时间步
-writeControl    timeStep;
-writeInterval   50;        // 只在最后一步保存结果，减少I/O对计算时间的干扰
+endTime         0.05;
+
+// Start from a small time step and keep the run below the target Courant number.
+deltaT          1e-4;
+adjustTimeStep  yes;
+maxCo           0.5;
+maxDeltaT       5e-4;
+
+writeControl    runTime;
+writeInterval   0.05;
 purgeWrite      0;
 writeFormat     ascii;
 writePrecision  6;
