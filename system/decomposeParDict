@@ -14,20 +14,19 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-numberOfSubdomains 8; // 设定使用的 CPU 核心数
+numberOfSubdomains 8;
 
-// 实验切换：在此处切换不同的划分方法
-method          simple; 
-// method          simple;
+method          simple;
 
+hierarchicalCoeffs
+{
+    n               (8 1 1);
+    delta           0.001;
+    order           xyz;
+}
 simpleCoeffs
 {
-    // 如果使用 simple，需保证 n 的乘积等于 numberOfSubdomains (2*2*2=8)
     n               (2 2 2); 
     delta           0.001;
 }
 
-scotchCoeffs
-{
-    // scotch 自动图划分，无需额外参数
-}
