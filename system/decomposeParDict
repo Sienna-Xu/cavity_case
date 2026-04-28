@@ -17,7 +17,7 @@ FoamFile
 numberOfSubdomains 8; // 设定使用的 CPU 核心数
 
 // 实验切换：在此处切换不同的划分方法
-method          scotch; 
+method          simple; 
 // method          simple;
 
 simpleCoeffs
